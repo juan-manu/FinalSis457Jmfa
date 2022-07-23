@@ -32,3 +32,15 @@ CREATE TABLE Usuario (
     [rol] VARCHAR (100) NOT NULL,
     [registroActivo]  BIT           NULL
 );
+
+
+//INSERTAR DATOS EN LAS DIFERENTES TABLAS
+INSERT INTO Usuario 
+VALUES ('juanmanuel', '123456', 'Administrador', 'True');
+
+INSERT INTO Serie 
+VALUES ('Avengers', 'Acción', 'Elon Musk', '3', '09/08/12', 'True');
+
+
+INSERT INTO Serie 
+VALUES ('Spiderman', 'Marvel Super Hero', 'Kick nacsh', '4', '11/10/12', 'True');
