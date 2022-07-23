@@ -9,96 +9,87 @@ using FinalSis457Jmfa.Models;
 
 namespace FinalSis457Jmfa.Controllers
 {
-    public class SeriesController : Controller
+    public class UsuariosController : Controller
     {
         private readonly FinalSis457JmfaContext _context;
 
-        public SeriesController(FinalSis457JmfaContext context)
+        public UsuariosController(FinalSis457JmfaContext context)
         {
             _context = context;
         }
 
-        // GET: Series
+        // GET: Usuarios
         public async Task<IActionResult> Index()
         {
-            /*var usuario = new Usuario();
-            usuario.Usuario1 = "juanmanuel";
-            usuario.Clave = AccountController.Encrypt("123456");
-            usuario.Rol = "Administrador";
-            usuario.RegistroActivo = true;
-
-            _context.Add(usuario);
-            await _context.SaveChangesAsync(); */
-
-            return _context.Series != null ? 
-                          View(await _context.Series.Where(x => x.RegistroActivo == true).ToListAsync()) :
-                          Problem("Entity set 'FinalSis457JmfaContext.Series'  is null.");
+              return _context.Usuarios != null ? 
+                          View(await _context.Usuarios.ToListAsync()) :
+                          Problem("Entity set 'FinalSis457JmfaContext.Usuarios'  is null.");
         }
 
-        // GET: Series/Details/5
+        // GET: Usuarios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Series == null)
+            if (id == null || _context.Usuarios == null)
             {
                 return NotFound();
             }
 
-            var serie = await _context.Series
+            var usuario = await _context.Usuarios
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (serie == null)
+            if (usuario == null)
             {
                 return NotFound();
             }
 
-            return View(serie);
+            return View(usuario);
         }
 
-        // GET: Series/Create
+        // GET: Usuarios/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Series/Create
+        // POST: Usuarios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,Sinopsis,Director,Duracion,FechaEstreno,RegistroActivo")] Serie serie)
+        public async Task<IActionResult> Create([Bind("Id,Usuario1,Clave,Rol,RegistroActivo")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(serie);
+                _context.Add(usuario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(serie);
+            return View(usuario);
         }
 
-        // GET: Series/Edit/5
+        // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Series == null)
+            if (id == null || _context.Usuarios == null)
             {
                 return NotFound();
             }
 
-            var serie = await _context.Series.FindAsync(id);
-            if (serie == null)
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario == null)
             {
                 return NotFound();
             }
-            return View(serie);
+            return View(usuario);
         }
 
-        // POST: Series/Edit/5
+        // POST: Usuarios/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Sinopsis,Director,Duracion,FechaEstreno,RegistroActivo")] Serie serie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Usuario1,Clave,Rol,RegistroActivo")] Usuario usuario)
         {
-            if (id != serie.Id)
+            if (id != usuario.Id)
             {
                 return NotFound();
             }
@@ -107,12 +98,12 @@ namespace FinalSis457Jmfa.Controllers
             {
                 try
                 {
-                    _context.Update(serie);
+                    _context.Update(usuario);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SerieExists(serie.Id))
+                    if (!UsuarioExists(usuario.Id))
                     {
                         return NotFound();
                     }
@@ -123,49 +114,49 @@ namespace FinalSis457Jmfa.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(serie);
+            return View(usuario);
         }
 
-        // GET: Series/Delete/5
+        // GET: Usuarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Series == null)
+            if (id == null || _context.Usuarios == null)
             {
                 return NotFound();
             }
 
-            var serie = await _context.Series
+            var usuario = await _context.Usuarios
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (serie == null)
+            if (usuario == null)
             {
                 return NotFound();
             }
 
-            return View(serie);
+            return View(usuario);
         }
 
-        // POST: Series/Delete/5
+        // POST: Usuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Series == null)
+            if (_context.Usuarios == null)
             {
-                return Problem("Entity set 'FinalSis457JmfaContext.Series'  is null.");
+                return Problem("Entity set 'FinalSis457JmfaContext.Usuarios'  is null.");
             }
-            var serie = await _context.Series.FindAsync(id);
-            if (serie != null)
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario != null)
             {
-                _context.Series.Remove(serie);
+                _context.Usuarios.Remove(usuario);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SerieExists(int id)
+        private bool UsuarioExists(int id)
         {
-          return (_context.Series?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Usuarios?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
