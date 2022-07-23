@@ -1,0 +1,31 @@
+DATOS PERSONALES
+
+NOMBRE: Juan Manuel Figueroa Almanza 
+CARRERA: Informática
+C.U: 26-2790
+DOCENTE: Ing. Esnor Noel Enrique Vaca Moreno
+
+
+Usuario y Contraseña del Proyecto Final MVC
+
+Usuario: juanmanuel
+Contraseña: 123456
+
+
+PARA CREAR USUARIO SerieController.cs
+
+	    var usuario = new Usuario();
+            usuario.Usuario1 = "juanmanuel";
+            usuario.Clave = AccountController.Encrypt("123456");
+            usuario.Rol = "Administrador";
+            usuario.RegistroActivo = true;
+
+	    _context.Add(usuario);
+            await _context.SaveChangesAsync();
+
+CODIGO PARA CREAR EL SCAFFOLD
+-->Scaffold-DbContext "Server=(localdb)\MSSQLLocalDB;Database=FinalSis457Jmfa;User ID=usrfinal;Password=12345678" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+
+
+CODIGO PARA HACER CORRER EN CONSOLA DE ADMINISTRADOR DE PAQUETES
+--> dotnet watch --project FinalSis457Jmfa
