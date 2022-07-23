@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FinalSis457Jmfa.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinalSis457Jmfa.Controllers
 {
+    [Authorize]
     public class UsuariosController : Controller
     {
         private readonly FinalSis457JmfaContext _context;

@@ -29,6 +29,11 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+
+app.UseCookiePolicy();
+app.UseSession();
+app.UseAuthentication();
+
 app.UseRouting();
 
 app.UseAuthorization();
